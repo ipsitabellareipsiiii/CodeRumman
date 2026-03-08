@@ -1,31 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> CAN I HAVE THIS DANCE WITH YOU? </title>
-<style>
-body{text-align:center;font-family: Times New Roman; margin-top:150px ; background-color:orange;}
+    <title>Can I have this dance?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: "Times New Roman", serif;
+            margin-top: 100px;
+            background-color: #ffe6f0;
+            overflow: hidden;
+        }
 
-button{font-size:20px; padding:15px; cursor:pointer;}
-#nobutton{position:absolute}
-</style>
+        h1 {
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            margin: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background-color: #ff69b4;
+            color: white;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        #noButton {
+            position: absolute;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: gold;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            0% {transform: translateY(0px) rotate(0deg);}
+            100% {transform: translateY(600px) rotate(720deg);}
+        }
+
+        #successVector {
+            display: none;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
+
 <h1>Can I have this dance with you? 💃</h1>
-<a href="/yes">
-<button>Yes</button>
-</a>
+
+<!-- YES button -->
+<button id="yesButton">Yes</button>
+
+<!-- NO button -->
 <button id="noButton">No</button>
+
+<!-- Success vector (can be an image or SVG) -->
+<img id="successVector" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Check_green_icon.svg/1200px-Check_green_icon.svg.png" width="150px">
+
 <script>
-let button = doccument.getElementByID("noButton"); button.addEventlistener("mouseover",function(){  
-                                                                           
-    let x = Math.random() * window.innerWidth;
-    let y = Math.random() * window.innerHeight;
+    // Make NO button run away
+    let noButton = document.getElementById("noButton");
+    noButton.addEventListener("mouseover", function(){
+        let x = Math.random() * (window.innerWidth - 100);
+        let y = Math.random() * (window.innerHeight - 50);
+        noButton.style.left = x + "px";
+        noButton.style.top = y + "px";
+    });
 
-    button.style.left = x + "px";
-    button.style.top = y + "px";
+    // YES button click - show success animation
+    let yesButton = document.getElementById("yesButton");
+    let successVector = document.getElementById("successVector");
 
-});
+    yesButton.addEventListener("click", function() {
+        successVector.style.display = "block"; // show the success image
+        launchConfetti(50); // launch 50 confetti pieces
+    });
 
+    // Confetti function
+    function launchConfetti(count){
+        for(let i=0; i<count; i++){
+            let confetti = document.createElement("div");
+            confetti.className = "confetti";
+            confetti.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+            confetti.style.left = Math.random() * window.innerWidth + "px";
+            confetti.style.top = "-10px";
+            document.body.appendChild(confetti);
+
+            // remove after animation
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }
+    }
 </script>
 
 </body>
