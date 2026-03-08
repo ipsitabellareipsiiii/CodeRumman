@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> CAN I HAVE THIS DANCE WITH YOU? </title>
+<style>
+body{text-align:center;font-family: Times New Roman; margin-top:150px ; background-color:orange;}
+
+button{font-size:20px; padding:15px; cursor:pointer;}
+#nobutton{position:absolute}
+</style>
+</head>
+<body>
+<h1>Can I have this dance with you? 💃</h1>
+<a href="/yes">
+<button>Yes</button>
+</a>
+<button id="noButton">No</button>
+<script>
+let button = doccument.getElementByID("noButton"); button.addEventlistener("mouseover",function(){  
+                                                                           
+    let x = Math.random() * window.innerWidth;
+    let y = Math.random() * window.innerHeight;
+
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+
+});
+
+</script>
+
+</body>
+</html>
