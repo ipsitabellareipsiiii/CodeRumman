@@ -67,11 +67,11 @@
 <!-- NO button -->
 <button id="noButton">No</button>
 
-<!-- Success vector (can be an image or SVG) -->
+<!-- Success vector (green checkmark) -->
 <img id="successVector" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Check_green_icon.svg/1200px-Check_green_icon.svg.png" width="150px">
 
 <script>
-    // Make NO button run away
+    // NO button moves away
     let noButton = document.getElementById("noButton");
     noButton.addEventListener("mouseover", function(){
         let x = Math.random() * (window.innerWidth - 100);
@@ -80,7 +80,7 @@
         noButton.style.top = y + "px";
     });
 
-    // YES button click - show success animation
+    // YES button click - show success vector + confetti
     let yesButton = document.getElementById("yesButton");
     let successVector = document.getElementById("successVector");
 
